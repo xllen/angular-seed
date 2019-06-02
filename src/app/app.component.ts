@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
     private config: ConfigService,
     private loggerFactory: LoggerFactoryService
   ) {
-    this.logger = loggerFactory.getLogger('AppCompont')
+    this.logger = this.loggerFactory.getLogger('AppComponent');
   }
   title = 'angular-seed';
 
