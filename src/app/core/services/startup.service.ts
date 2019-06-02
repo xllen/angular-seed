@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoggerFactoryService } from './logger-factory.service';
 
 @Injectable()
 export class StartUpService {
@@ -10,6 +11,7 @@ export class StartUpService {
     constructor(
         private config: ConfigService,
         private translate: TranslateService,
+        private loggerFactory: LoggerFactoryService
     ){}
 
     /**
@@ -20,6 +22,11 @@ export class StartUpService {
         return new Promise( (resolve, reject) => {
             this.config.setConfigFileUrl(url);
             this.config.load().subscribe(() => {
+
+                // 配置logger
+                const logSvrUrl = this.config.instant('logSvrUrl');
+                this.loggerFactory.setConfig(logSvrUrl);
+                const logger = this.loggerFactory.getLogger('StartUpService');
                 //设置语言
                 let lang = this.config.instant('lang');
 
@@ -27,6 +34,8 @@ export class StartUpService {
                     lang = this.defaultLang;
                 }
                 this.translate.use(lang);
+
+                logger.info(`current language is ${lang}`)
                 resolve();
             }, (err: HttpErrorResponse) => {
                 reject();

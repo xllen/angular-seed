@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './core/services/config.service';
+import { Logger, LoggerFactoryService } from './core/services/logger-factory.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,13 @@ import { ConfigService } from './core/services/config.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  private logger: Logger;
   constructor(
     private translate: TranslateService,
-    private config: ConfigService
+    private config: ConfigService,
+    private loggerFactory: LoggerFactoryService
   ) {
+    this.logger = loggerFactory.getLogger('AppCompont')
   }
   title = 'angular-seed';
 
@@ -22,5 +26,8 @@ export class AppComponent implements OnInit{
   configTest() {
     const apiUrl = this.config.instant('apiUrl');
     console.log(apiUrl);
+
+    this.logger.info('test test')
   }
+
  }

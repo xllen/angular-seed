@@ -4,6 +4,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ConfigService } from './services/config.service';
 import { StartUpService } from './services/startup.service';
+import { LoggerFactoryService } from './services/logger-factory.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -30,6 +31,7 @@ export function StartUpServiceFactory(startUp: StartUpService) {
     providers: [
         ConfigService,
         StartUpService,
+        LoggerFactoryService,
         {
             provide: APP_INITIALIZER,
             useFactory: StartUpServiceFactory,

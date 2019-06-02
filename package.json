@@ -22,6 +22,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^2.5.4",
+    "jsnlog": "^2.29.0",
     "moment": "^2.24.0",
     "ng-zorro-antd": "^7.3.3",
     "rxjs": "~6.3.3",
