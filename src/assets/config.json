@@ -1,3 +1,4 @@
 {
-    "apiUrl": "www.baidu.com"
+    "apiUrl": "www.baidu.com",
+    "lang": "zh-CN"
 }

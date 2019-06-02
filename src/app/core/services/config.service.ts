@@ -49,7 +49,6 @@ export class ConfigService {
 
     public setConfigFileUrl(url: string): void {
         this.url = url;
-        console.log(this.url);
       }
 
     public load():Observable<Configuration> {
